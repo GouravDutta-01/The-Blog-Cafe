@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   AppBar,
-  Button,
   Tab,
   Tabs,
   Toolbar,
@@ -17,12 +16,14 @@ export default function Navbar() {
   const routes = ["/", "/about", "/contact", "/write", "/login", "/register"];
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  const [value, setValue] = useState(routes[0]);
   const location = useLocation();
+  const [value, setValue] = useState(location.pathname);
+
   useEffect(() => {
     // Update the selected tab based on the current URL pathname
     setValue(location.pathname);
   }, [location.pathname]);
+
   return (
     <>
       <AppBar position="sticky" sx={{ backgroundColor: "#05360c" }}>
@@ -30,64 +31,57 @@ export default function Navbar() {
           <HistoryEdu />
           <Typography>TheBlogCafe</Typography>
           {isMatch ? (
-            <>
-              <HamburgerMenu />
-            </>
+            <HamburgerMenu />
           ) : (
-            <>
-              <Tabs
-                sx={{ marginLeft: "auto" }}
-                textColor="inherit"
-                value={value}
-                onChange={(e, value) => setValue(value)}
-                indicatorColor=""
-              >
-                <Tab
-                  label="HOME"
-                  value={routes[0]}
-                  component={Link}
-                  to={routes[0]}
-                />
-                <Tab
-                  label="ABOUT"
-                  value={routes[1]}
-                  component={Link}
-                  to={routes[1]}
-                />
-                <Tab
-                  label="CONTACT"
-                  value={routes[2]}
-                  component={Link}
-                  to={routes[2]}
-                />
-                <Tab
-                  label="WRITE"
-                  value={routes[3]}
-                  component={Link}
-                  to={routes[3]}
-                />
-              </Tabs>
-              <Button
-                sx={{ marginLeft: "auto" }}
-                variant="contained"
-                color="success"
+            <Tabs
+              sx={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
+              textColor="inherit"
+              value={value}
+              onChange={(e, newValue) => setValue(newValue)}
+              indicatorColor=""
+            >
+              <Tab
+                label="HOME"
+                value={routes[0]}
+                component={Link}
+                to={routes[0]}
+              />
+              <Tab
+                label="ABOUT"
+                value={routes[1]}
+                component={Link}
+                to={routes[1]}
+              />
+              <Tab
+                label="CONTACT"
+                value={routes[2]}
+                component={Link}
+                to={routes[2]}
+              />
+              <Tab
+                label="WRITE"
+                value={routes[3]}
+                component={Link}
+                to={routes[3]}
+              />
+              <Tab
+                label="LOGIN"
                 value={routes[4]}
                 component={Link}
                 to={routes[4]}
-              >
-                LOGIN
-              </Button>
-              <Button
-                sx={{ marginLeft: "10px" }}
-                variant="contained"
-                color="success"
+              />
+              <Tab
+                label="REGISTER"
                 value={routes[5]}
                 component={Link}
                 to={routes[5]}
-              >
-                REGISTER
-              </Button>
-            </>
+              />
+            </Tabs>
           )}
         </Toolbar>
       </AppBar>
