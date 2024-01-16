@@ -9,7 +9,9 @@ import {
   TextareaAutosize,
   createTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../context/Context";
+import axios from "axios";
 
 const Image = styled("img")({
   width: "100%",
@@ -48,16 +50,57 @@ export default function Write() {
   const url =
     "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
   const theme = createTheme();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
+  const { user } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newPost = {
+      username: user.username,
+      title,
+      desc,
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.photo = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.post("/posts", newPost);
+      window.location.replace("/post/" + res.data._id);
+    } catch (err) {}
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Image src={url} alt="" />
+        {file ? (
+          <Image src={URL.createObjectURL(file)} alt="" />
+        ) : (
+          <Image src={url} alt="" />
+        )}
         <StyledFormControl>
           <label htmlFor="fileInput">
             <AddCircle fontSize="large" color="success" />
           </label>
-          <input type="file" id="fileInput" style={{ display: "none" }} />
-          <InputTextField placeholder="Add Blog Title" />
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <InputTextField
+            type="text"
+            placeholder="Add Blog Title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
           <Button
             variant="contained"
@@ -67,6 +110,7 @@ export default function Write() {
                 borderRight: 10,
               },
             })}
+            onClick={handleSubmit}
           >
             Publish
           </Button>
@@ -74,7 +118,9 @@ export default function Write() {
         <Textarea
           minRows={5}
           placeholder="Add Blog Description"
+          type="text"
           name="description"
+          onChange={(e) => setDesc(e.target.value)}
         />
       </Container>
     </ThemeProvider>
