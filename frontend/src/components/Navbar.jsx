@@ -11,14 +11,16 @@ import {
 } from "@mui/material";
 import { HistoryEdu } from "@mui/icons-material";
 import HamburgerMenu from "./HamburgerMenu";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 
 export default function Navbar() {
   const PF = "http://localhost:5000/images/";
   const { user, dispatch } = useContext(Context);
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+    navigate("/login");
   };
   const routes = ["/", "/about", "/contact", "/write", "/login", "/register"];
   const theme = useTheme();

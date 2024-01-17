@@ -12,7 +12,7 @@ import {
   IconButton,
   createTheme,
   ThemeProvider,
-  TextField,
+  InputBase,
 } from "@mui/material";
 import axios from "axios";
 import { Context } from "../context/Context";
@@ -45,6 +45,11 @@ export default function SinglePost() {
     width: "100%",
     height: "50vh",
     objectFit: "cover",
+  });
+  const InputTextField = styled(InputBase)({
+    flex: "1",
+    margin: "0 30px",
+    fontSize: "25px",
   });
   const Textarea = styled(TextareaAutosize)(({ theme }) => ({
     width: "100%",
@@ -98,10 +103,10 @@ export default function SinglePost() {
         <Card>
           <CardContent>
             {updateMode ? (
-              <TextField
+              <InputTextField
+                type="text"
                 sx={{ paddingBottom: "5px" }}
                 value={title}
-                autoFocus
                 onChange={(e) => setTitle(e.target.value)}
               />
             ) : (
@@ -113,7 +118,10 @@ export default function SinglePost() {
               <>
                 <Typography variant="subtitle1">
                   Author:
-                  <Link to={`/?user=${post.username}`} style={{ textDecoration: "none", color: "inherit" }}>
+                  <Link
+                    to={`/?user=${post.username}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     <b> {post.username}</b>
                   </Link>
                 </Typography>
@@ -125,6 +133,8 @@ export default function SinglePost() {
             <Divider />
             {updateMode ? (
               <Textarea
+                minRows={5}
+                type="text"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
               />
@@ -136,11 +146,11 @@ export default function SinglePost() {
           </CardContent>
           {!updateMode && post.username === user?.username && (
             <CardActions>
-              <IconButton aria-label="edit">
-                <EditNote onClick={() => setUpdateMode(true)} />
+              <IconButton aria-label="edit" onClick={() => setUpdateMode(true)}>
+                <EditNote />
               </IconButton>
-              <IconButton aria-label="delete">
-                <Delete onClick={handleDelete} />
+              <IconButton aria-label="delete" onClick={handleDelete}>
+                <Delete />
               </IconButton>
             </CardActions>
           )}
