@@ -4,23 +4,19 @@ import {
   Box,
   Button,
   Typography,
-  TextareaAutosize,
   Divider,
   CardContent,
   Card,
   CardActions,
   IconButton,
-  createTheme,
-  ThemeProvider,
-  InputBase,
+  TextField,
+  CardMedia,
 } from "@mui/material";
 import axios from "axios";
 import { Context } from "../context/Context";
 import { Delete, EditNote } from "@mui/icons-material";
-import styled from "@emotion/styled";
 
 export default function SinglePost() {
-  const theme = createTheme();
   const url =
     "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
   const location = useLocation();
@@ -31,36 +27,6 @@ export default function SinglePost() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
-
-  const Container = styled(Box)(({ theme }) => ({
-    margin: "auto",
-    padding: "20px",
-    width: "100%",
-    [theme.breakpoints.down("md")]: {
-      margin: 0,
-      overflowX: "hidden",
-    },
-  }));
-  const Image = styled("img")({
-    width: "100%",
-    height: "50vh",
-    objectFit: "cover",
-  });
-  const InputTextField = styled(InputBase)({
-    flex: "1",
-    margin: "0 30px",
-    fontSize: "25px",
-  });
-  const Textarea = styled(TextareaAutosize)(({ theme }) => ({
-    width: "100%",
-    border: "none",
-    marginTop: "50px",
-    fontSize: "18px",
-    resize: "none",
-    "&:focus-visible": {
-      outline: "none",
-    },
-  }));
 
   useEffect(() => {
     const getPost = async () => {
@@ -93,74 +59,94 @@ export default function SinglePost() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        {post.photo ? (
-          <Image src={PF + post.photo} alt="" />
-        ) : (
-          <Image src={url} alt="" />
+    <Box width="100%">
+      {post.photo ? (
+        <CardMedia
+          component="img"
+          alt=""
+          height="300vh"
+          margin="auto"
+          objectFit="cover"
+          image={PF + post.photo}
+        />
+      ) : (
+        <CardMedia
+          component="img"
+          alt=""
+          margin="16px"
+          height="300vh"
+          objectFit="cover"
+          image={url}
+        />
+      )}
+      <Card sx={{ margin: "16px" }}>
+        <CardContent>
+          {updateMode ? (
+            <TextField
+              fullWidth
+              type="text"
+              sx={{ paddingBottom: "5px" }}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          ) : (
+            <Typography variant="h4" gutterBottom>
+              {title}
+            </Typography>
+          )}
+          {!updateMode && (
+            <>
+              <Typography variant="subtitle1">
+                Author:
+                <Link
+                  to={`/?user=${post.username}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <b> {post.username}</b>
+                </Link>
+              </Typography>
+              <Typography variant="subtitle2">
+                {new Date(post.createdAt).toDateString()}
+              </Typography>
+            </>
+          )}
+          <Divider />
+          {updateMode ? (
+            <TextField
+              multiline
+              fullWidth
+              minRows={5}
+              type="text"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+          ) : (
+            <Typography variant="body1" paragraph>
+              {desc}
+            </Typography>
+          )}
+        </CardContent>
+        {!updateMode && post.username === user?.username && (
+          <CardActions>
+            <IconButton aria-label="edit" onClick={() => setUpdateMode(true)}>
+              <EditNote />
+            </IconButton>
+            <IconButton aria-label="delete" onClick={handleDelete}>
+              <Delete />
+            </IconButton>
+          </CardActions>
         )}
-        <Card>
-          <CardContent>
-            {updateMode ? (
-              <InputTextField
-                type="text"
-                sx={{ paddingBottom: "5px" }}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            ) : (
-              <Typography variant="h4" gutterBottom>
-                {title}
-              </Typography>
-            )}
-            {!updateMode && (
-              <>
-                <Typography variant="subtitle1">
-                  Author:
-                  <Link
-                    to={`/?user=${post.username}`}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <b> {post.username}</b>
-                  </Link>
-                </Typography>
-                <Typography variant="subtitle2">
-                  {new Date(post.createdAt).toDateString()}
-                </Typography>
-              </>
-            )}
-            <Divider />
-            {updateMode ? (
-              <Textarea
-                minRows={5}
-                type="text"
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-              />
-            ) : (
-              <Typography variant="body1" paragraph>
-                {desc}
-              </Typography>
-            )}
-          </CardContent>
-          {!updateMode && post.username === user?.username && (
-            <CardActions>
-              <IconButton aria-label="edit" onClick={() => setUpdateMode(true)}>
-                <EditNote />
-              </IconButton>
-              <IconButton aria-label="delete" onClick={handleDelete}>
-                <Delete />
-              </IconButton>
-            </CardActions>
-          )}
-          {updateMode && (
-            <Button variant="contained" color="primary" onClick={handleUpdate}>
-              Update
-            </Button>
-          )}
-        </Card>
-      </Container>
-    </ThemeProvider>
+        {updateMode && (
+          <Button
+            sx={{ margin: "16px auto", display: "block" }}
+            variant="contained"
+            color="success"
+            onClick={handleUpdate}
+          >
+            Update
+          </Button>
+        )}
+      </Card>
+    </Box>
   );
 }
