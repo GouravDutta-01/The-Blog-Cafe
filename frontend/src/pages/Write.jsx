@@ -1,6 +1,8 @@
 import { ThemeProvider } from "@emotion/react";
 import styled from "@emotion/styled";
 import { AddCircle } from "@mui/icons-material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Box,
   Button,
@@ -70,17 +72,26 @@ export default function Write() {
       newPost.photo = filename;
       try {
         await axios.post("/upload", data);
-      } catch (err) {}
+      } catch (err) {
+        toast.error("Error uploading image. Please try again.");
+      }
     }
     try {
       const res = await axios.post("/posts", newPost);
       window.location.replace("/post/" + res.data._id);
-    } catch (err) {}
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
+        toast.error("Duplicate title: Please choose a unique title.");
+      } else {
+        toast.error("Error creating post. Please try again.");
+      }
+    }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container>
+      <ToastContainer position="top-center" autoClose={1000}/>
         {file ? (
           <Image src={URL.createObjectURL(file)} alt="" />
         ) : (
