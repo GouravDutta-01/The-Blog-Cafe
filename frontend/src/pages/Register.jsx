@@ -2,6 +2,8 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -20,11 +22,13 @@ export default function Register() {
       });
       res.data && window.location.replace("/login");
     } catch (err) {
+      toast.error("Registration error. Please try again.");
       setError(true);
     }
   };
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={2000}/>
       <form onSubmit={handleSubmit}>
         <Box
           sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}
@@ -76,11 +80,6 @@ export default function Register() {
               Change to Login
             </Button>
           </Link>
-          {error && (
-            <span style={{ color: "red", marginTop: "10px" }}>
-              Something went wrong!
-            </span>
-          )}
         </Box>
       </form>
     </div>

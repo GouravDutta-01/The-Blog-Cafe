@@ -13,6 +13,8 @@ import { HistoryEdu } from "@mui/icons-material";
 import HamburgerMenu from "./HamburgerMenu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Navbar() {
   const PF = "http://localhost:5000/images/";
@@ -20,6 +22,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+    toast.success("Logout successful. See you again soon!");
     navigate("/login");
   };
   const routes = ["/", "/about", "/contact", "/write", "/login", "/register"];
@@ -35,6 +38,7 @@ export default function Navbar() {
 
   return (
     <>
+    <ToastContainer position="top-center" autoClose={2000}/>
       <AppBar position="sticky" sx={{ backgroundColor: "#05360c" }}>
         <Toolbar>
           <HistoryEdu />
