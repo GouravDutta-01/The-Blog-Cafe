@@ -9,11 +9,9 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
     try {
       const res = await axios.post("/auth/register", {
         username,
@@ -23,7 +21,6 @@ export default function Register() {
       res.data && window.location.replace("/login");
     } catch (err) {
       toast.error("Registration error. Please try again.");
-      setError(true);
     }
   };
   return (
