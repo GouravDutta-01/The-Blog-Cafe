@@ -12,8 +12,6 @@ import {
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import axios from "axios";
 import { Context } from "../context/Context";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Settings = () => {
   const [username, setUsername] = useState("");
@@ -48,14 +46,12 @@ const Settings = () => {
       const res = await axios.put("/users/" + user._id, updatedUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-      toast.success("Profile has been updated...");
     } catch (err) {
       dispatch({ type: "UPDATE_FAILURE" });
     }
   };
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 10 }}>
-      <ToastContainer position="top-center" autoClose={2000}/>
       <Paper
         elevation={3}
         sx={{
