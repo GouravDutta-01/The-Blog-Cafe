@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Typography,
-  Divider,
   CardContent,
   Card,
   CardActions,
@@ -90,13 +89,19 @@ export default function SinglePost() {
               onChange={(e) => setTitle(e.target.value)}
             />
           ) : (
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ textAlign: "center", fontWeight: "bold" }}>
               {title}
             </Typography>
           )}
           {!updateMode && (
-            <>
-              <Typography variant="subtitle1">
+            <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+              <Typography variant="subtitle1" sx={{color: "#7e8c37"}}>
                 Author:
                 <Link
                   to={`/?user=${post.username}`}
@@ -105,12 +110,11 @@ export default function SinglePost() {
                   <b> {post.username}</b>
                 </Link>
               </Typography>
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" sx={{color: "#7e8c37"}}>
                 {new Date(post.createdAt).toDateString()}
               </Typography>
-            </>
+            </div>
           )}
-          <Divider />
           {updateMode ? (
             <TextField
               multiline
@@ -122,17 +126,19 @@ export default function SinglePost() {
             />
           ) : (
             <Typography variant="body1" paragraph>
-              {desc}
+              <span style={{ fontSize: "2em" }}>{desc.charAt(0)}</span>
+              {desc.slice(1)}
             </Typography>
+
           )}
         </CardContent>
         {!updateMode && post.username === user?.username && (
           <CardActions>
             <IconButton aria-label="edit" onClick={() => setUpdateMode(true)}>
-              <EditNote />
+              <EditNote sx={{color:"#197d8a"}}/>
             </IconButton>
             <IconButton aria-label="delete" onClick={handleDelete}>
-              <Delete />
+              <Delete sx={{color:"red"}}/>
             </IconButton>
           </CardActions>
         )}
