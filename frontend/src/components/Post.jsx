@@ -1,25 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 
 export default function Post({ post }) {
   const PF = "http://localhost:5000/images/";
   const url =
     "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
+
   return (
-    <Grid item xs={12} sm={6} md={4} lg={4}>
-      <Card
-        sx={{
-          width: "380px",
-          margin: "0px 25px 40px 25px",
-          marginTop: 4,
-          marginBottom: 4,
-        }}
-      >
+    <Box component="div">
+      <Card sx={{ width: "380px", margin: "40px auto" }}>
         {post.photo ? (
           <CardMedia
             component="img"
-            object-fit="cover"
+            objectFit="cover"
             width="100%"
             height="200"
             image={PF + post.photo}
@@ -58,6 +52,6 @@ export default function Post({ post }) {
           </Typography>
         </CardContent>
       </Card>
-    </Grid>
+    </Box>
   );
 }
