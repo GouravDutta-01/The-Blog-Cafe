@@ -33,18 +33,20 @@ export default function Post({ post }) {
             to={`/post/${post._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" sx={{ paddingBottom: "10px"}}>
               {post.title}
             </Typography>
           </Link>
-          <Typography color="textSecondary" gutterBottom>
-            Author: {post.username}
-          </Typography>
-          <Typography color="textSecondary" gutterBottom>
-            Date: {new Date(post.createdAt).toDateString()}
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography color="textSecondary" gutterBottom>
+              Author: <b>{post.username}</b>
+            </Typography>
+            <Typography color="textSecondary" gutterBottom>
+              {new Date(post.createdAt).toDateString()}
+            </Typography>
+          </Box>
           <Typography
-            sx={{ textOverflow: "ellipsis" }}
+            sx={{ paddingTop: "20px", textOverflow: "ellipsis" }}
             variant="body2"
             component="p"
           >
