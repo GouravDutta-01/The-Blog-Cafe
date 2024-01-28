@@ -8,6 +8,14 @@ import {
   ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+import CreateIcon from "@mui/icons-material/Create";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 
@@ -40,48 +48,56 @@ export default function MobileMenu() {
         <List>
           <ListItemButton onClick={() => handleMenuClick("/")}>
             <ListItemIcon>
-              <ListItemText>Home</ListItemText>
+              <HomeIcon />
             </ListItemIcon>
+            <ListItemText>Home</ListItemText>
           </ListItemButton>
           <ListItemButton onClick={() => handleMenuClick("/about")}>
             <ListItemIcon>
-              <ListItemText>About</ListItemText>
+              <InfoIcon />
             </ListItemIcon>
+            <ListItemText>About</ListItemText>
           </ListItemButton>
           <ListItemButton onClick={() => handleMenuClick("/contact")}>
             <ListItemIcon>
-              <ListItemText>Contact</ListItemText>
+              <ContactPageIcon />
             </ListItemIcon>
+            <ListItemText>Contact</ListItemText>
           </ListItemButton>
           <ListItemButton onClick={() => handleMenuClick("/write")}>
             <ListItemIcon>
-              <ListItemText>Write</ListItemText>
+              <CreateIcon />
             </ListItemIcon>
+            <ListItemText>Write</ListItemText>
           </ListItemButton>
           {user ? (
             <>
               <ListItemButton onClick={() => handleMenuClick("/settings")}>
                 <ListItemIcon>
-                  <ListItemText>Settings</ListItemText>
+                  <SettingsIcon />
                 </ListItemIcon>
+                <ListItemText>Settings</ListItemText>
               </ListItemButton>
               <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
-                  <ListItemText>Logout</ListItemText>
+                  <LogoutIcon />
                 </ListItemIcon>
+                <ListItemText>Logout</ListItemText>
               </ListItemButton>
             </>
           ) : (
             <>
               <ListItemButton onClick={() => handleMenuClick("/login")}>
                 <ListItemIcon>
-                  <ListItemText>Login</ListItemText>
+                  <LoginIcon />
                 </ListItemIcon>
+                <ListItemText>Login</ListItemText>
               </ListItemButton>
               <ListItemButton onClick={() => handleMenuClick("/register")}>
                 <ListItemIcon>
-                  <ListItemText>Register</ListItemText>
+                  <PersonAddIcon />
                 </ListItemIcon>
+                <ListItemText>Register</ListItemText>
               </ListItemButton>
             </>
           )}
