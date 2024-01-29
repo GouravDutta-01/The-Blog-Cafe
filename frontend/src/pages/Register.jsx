@@ -2,8 +2,10 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -25,7 +27,7 @@ export default function Register() {
   };
   return (
     <div>
-      <ToastContainer position="top-center" autoClose={2000}/>
+      <ToastContainer position="top-center" autoClose={2000} />
       <form onSubmit={handleSubmit}>
         <Box
           sx={{ ":hover": { boxShadow: "10px 10px 20px #ccc" } }}
@@ -65,6 +67,7 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
+            startIcon={<PersonAddIcon />}
             sx={{ marginTop: 3, borderRadius: 3 }}
             variant="contained"
             color="success"
@@ -73,7 +76,11 @@ export default function Register() {
             Register
           </Button>
           <Link to="/login">
-            <Button sx={{ marginTop: 6, borderRadius: 3 }} color="warning">
+            <Button
+              endIcon={<LoginIcon />}
+              sx={{ marginTop: 6, borderRadius: 3 }}
+              color="warning"
+            >
               Change to Login
             </Button>
           </Link>

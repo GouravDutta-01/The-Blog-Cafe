@@ -3,6 +3,8 @@ import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -58,6 +60,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
+            startIcon={<LoginIcon />}
             sx={{ marginTop: 3, borderRadius: 3 }}
             variant="contained"
             color="success"
@@ -67,7 +70,11 @@ export default function Login() {
             Login
           </Button>
           <Link to="/register">
-            <Button sx={{ marginTop: 6, borderRadius: 3 }} color="warning">
+            <Button
+              endIcon={<PersonAddIcon />}
+              sx={{ marginTop: 6, borderRadius: 3 }}
+              color="warning"
+            >
               Change to Register
             </Button>
           </Link>
