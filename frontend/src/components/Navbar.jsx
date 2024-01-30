@@ -42,7 +42,9 @@ export default function Navbar() {
       <AppBar position="sticky" sx={{ backgroundColor: "#05360c" }}>
         <Toolbar>
           <HistoryEdu />
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Typography>TheBlogCafe</Typography>
+          </Link>
           {isMatch ? (
             <HamburgerMenu />
           ) : (
