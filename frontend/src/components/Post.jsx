@@ -38,10 +38,10 @@ export default function Post({ post }) {
             </Typography>
           </Link>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography color="textSecondary" gutterBottom>
+            <Typography color="textSecondary" gutterBottom sx={{color: "#12372A"}}>
               Author: <b>{post.username}</b>
             </Typography>
-            <Typography color="textSecondary" gutterBottom>
+            <Typography color="textSecondary" gutterBottom sx={{color: "#436850"}}>
               {new Date(post.createdAt).toDateString()}
             </Typography>
           </Box>
