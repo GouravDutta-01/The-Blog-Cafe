@@ -4,6 +4,7 @@ Welcome to The-Blog-Cafe. This is a web application that enables users to create
 ## Features
 - User authentication: Register and login to manage your blogs.
 - CRUD operations for blogs: Create, read, update, and delete blogs.
+- Explore Blogs: Discover a variety of blogs from different authors.
 
 ## Getting Started
 Follow these steps to set up and run the project locally on your machine.
