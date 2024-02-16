@@ -33,8 +33,8 @@ export default function Post({ post }) {
             to={`/post/${post._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography variant="h6" component="div" sx={{ paddingBottom: "10px"}}>
-              {post.title}
+            <Typography variant="h6" component="div" sx={{ height: "75px", paddingBottom: "10px"}}>
+              {post.title.split(' ').slice(0, 10).join(' ')}{post.title.split(' ').length > 10 ? ' ...' : ''}
             </Typography>
           </Link>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -46,11 +46,11 @@ export default function Post({ post }) {
             </Typography>
           </Box>
           <Typography
-            sx={{ paddingTop: "20px", textOverflow: "ellipsis" }}
+            sx={{ height: "80px", paddingTop: "20px" }}
             variant="body2"
             component="p"
           >
-            {post.desc}
+            {post.desc.split(' ').slice(0, 20).join(' ')}{post.desc.split(' ').length > 20 ? ' ...' : ''}
           </Typography>
         </CardContent>
       </Card>
