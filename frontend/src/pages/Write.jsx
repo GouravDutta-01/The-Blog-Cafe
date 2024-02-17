@@ -99,7 +99,7 @@ export default function Write() {
         )}
         <StyledFormControl>
           <label htmlFor="fileInput">
-            <AddCircle fontSize="large" color="success" />
+            <AddCircle fontSize="large" style={{color : "#398d81"}} />
           </label>
           <input
             type="file"
@@ -115,7 +115,7 @@ export default function Write() {
 
           <Button
             variant="contained"
-            color="success"
+            style={{ backgroundColor: "#149b77"}}
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
                 borderRight: 10,

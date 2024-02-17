@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <>
     <ToastContainer position="top-center" autoClose={2000}/>
-      <AppBar position="sticky" sx={{ backgroundColor: "#05360c" }}>
+      <AppBar position="sticky" sx={{ backgroundColor: "#094b5d" }}>
         <Toolbar>
           <HistoryEdu />
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>

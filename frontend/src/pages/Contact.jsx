@@ -22,7 +22,7 @@ export default function Contact() {
         <Grid item>
           <Button
             variant="contained"
-            color="success"
+            style={{ backgroundColor: "#149b77"}}
             startIcon={<GitHubIcon />}
             href="https://github.com/GouravDutta-01"
             target="_blank"
@@ -34,7 +34,7 @@ export default function Contact() {
         <Grid item>
           <Button
             variant="contained"
-            color="success"
+            style={{ backgroundColor: "#149b77"}}
             startIcon={<LinkedInIcon />}
             href="https://www.linkedin.com/in/gourav-dutta-b85101253"
             target="_blank"
