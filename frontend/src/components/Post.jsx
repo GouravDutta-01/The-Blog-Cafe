@@ -33,7 +33,7 @@ export default function Post({ post }) {
             to={`/post/${post._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Typography variant="h6" component="div" sx={{ height: "75px", paddingBottom: "10px"}}>
+            <Typography variant="h6" component="div" sx={{ height: "75px", paddingBottom: "15px"}}>
               {post.title.split(' ').slice(0, 10).join(' ')}{post.title.split(' ').length > 10 ? ' ...' : ''}
             </Typography>
           </Link>
