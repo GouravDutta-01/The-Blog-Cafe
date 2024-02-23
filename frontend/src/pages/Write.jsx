@@ -14,6 +14,7 @@ import {
 import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import axios from "axios";
+import defaultImg from "../assets/default.jpg";
 
 const Image = styled("img")({
   width: "100%",
@@ -49,8 +50,6 @@ const Textarea = styled(TextareaAutosize)(({ theme }) => ({
 }));
 
 export default function Write() {
-  const url =
-    "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
   const theme = createTheme();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -95,7 +94,7 @@ export default function Write() {
         {file ? (
           <Image src={URL.createObjectURL(file)} alt="" />
         ) : (
-          <Image src={url} alt="" />
+          <Image src={defaultImg} alt="" />
         )}
         <StyledFormControl>
           <label htmlFor="fileInput">

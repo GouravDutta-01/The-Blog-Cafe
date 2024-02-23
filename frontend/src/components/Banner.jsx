@@ -6,6 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import ArrowForward from "@mui/icons-material/ArrowForward";
+import image1 from "../assets/banner1.jpg";
+import image2 from "../assets/banner2.jpg";
+import image3 from "../assets/banner3.jpeg";
 
 const Image = styled(Box)({
   backgroundPosition: "center",
@@ -19,9 +22,9 @@ const Image = styled(Box)({
 
 export default function Banner() {
   const images = [
-    "https://images.unsplash.com/photo-1620570623737-efc0ec4ab486?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    image1,
+    image2,
+    image3,
   ];
 
   const texts = [

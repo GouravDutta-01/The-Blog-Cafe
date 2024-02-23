@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import defaultImg from "../assets/default.jpg";
 
 export default function Post({ post }) {
   const PF = "http://localhost:5000/images/";
-  const url =
-    "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
 
   return (
     <Box component="div">
@@ -24,7 +23,7 @@ export default function Post({ post }) {
             component="img"
             width="100%"
             height="200"
-            image={url}
+            image={defaultImg}
             alt={post.title}
           />
         )}

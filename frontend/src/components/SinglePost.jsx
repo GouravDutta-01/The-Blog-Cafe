@@ -14,10 +14,9 @@ import {
 import axios from "axios";
 import { Context } from "../context/Context";
 import { Delete, EditNote } from "@mui/icons-material";
+import defaultImg from "../assets/default.jpg";
 
 export default function SinglePost() {
-  const url =
-    "https://cdn.pixabay.com/photo/2016/06/25/12/52/laptop-1478822_640.jpg";
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
@@ -75,7 +74,7 @@ export default function SinglePost() {
           margin="16px"
           height="300vh"
           objectFit="cover"
-          image={url}
+          image={defaultImg}
         />
       )}
       <Card sx={{ margin: "16px" }}>
