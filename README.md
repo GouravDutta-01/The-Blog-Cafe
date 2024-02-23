@@ -35,10 +35,6 @@ Create a .env file in the backend directory and add the following content:
 MONGO_URL=your_mongo_db_url_here
 ```
 Replace <b>your_mongo_db_url_here</b> with your actual MongoDB connection URL.<br/><br/>
-Create an <b>"images"</b> folder inside the backend directory. This folder will be used to store uploaded images.
-```bash
-mkdir images
-```
 Install dependencies:
 ```bash
 npm install
@@ -64,6 +60,10 @@ Run the frontend:
 npm start
 ```
 Now, you should be able to access the full application by visiting http://localhost:3000 in your web browser.
+
+## Demo Video
+Check out our demo video to get a quick overview of The-Blog-Cafe's features and how to use them.<br/>
+[Watch Demo Video](https://www.youtube.com/watch?v=hS_dUY9Wsm8)
 
 ## Contributing
 This project is currently under active development, and your contributions are highly valued! If you'd like to contribute to the development of this project, please follow these steps:
